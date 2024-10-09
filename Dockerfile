@@ -15,4 +15,4 @@ COPY --from=build /app/target/bookMarketPlace.jar bookMarketPlace.jar
 
 EXPOSE 8011
 
-ENTRYPOINT ["java", "-jar", "bookMarketPlace.jar"]
+ENTRYPOINT ["java", "-jar", "bookMarketPlace.jar", "--spring.profiles.active=prod"]
