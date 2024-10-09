@@ -11,8 +11,8 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-COPY --from=build /app/target/Online-Food-Ordering-0.0.1-SNAPSHOT.jar Online-Food-Ordering-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/bookMarketPlace-SNAPSHOT.jar bookMarketPlace-SNAPSHOT.jar
 
 EXPOSE 8011
 
-ENTRYPOINT ["java", "-jar", "Online-Food-Ordering-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "bookMarketPlace-SNAPSHOT.jar"]
