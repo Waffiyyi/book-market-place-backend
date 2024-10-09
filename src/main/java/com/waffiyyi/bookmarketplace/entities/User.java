@@ -1,6 +1,7 @@
 package com.waffiyyi.bookmarketplace.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ public class User {
    private Long id;
    private String username;
    private String email;
-   @JsonIgnore
+   @Schema(accessMode = Schema.AccessMode.WRITE_ONLY)
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    private String password;
 }

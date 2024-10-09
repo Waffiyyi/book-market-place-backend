@@ -20,23 +20,19 @@ import org.springframework.context.annotation.Configuration;
                                                    email = "fasholawafiyyi@gmail.com"),
                                 license = @License(name = "licence", url = "waffiyyi")
 
-),
-                   servers = {
-                      @Server(url = "https://book-market-place-backend.onrender.com",
-                              description = "Production Server"),
+), servers = {@Server(url = "https://book-market-place-backend.onrender.com",
+                      description = "Production Server"),
 
-                      @Server(url = "http://localhost:8015",
-                              description = "Local Server")
-                   },
+  @Server(url = "http://localhost:8015", description = "Local Server")},
                    security = {@io.swagger.v3.oas.annotations.security.SecurityRequirement(
-                      name = "bearerAuth", scopes = {"read", "write"})})
+                     name = "bearerAuth", scopes = {"read", "write"})})
 @Configuration
 public class SwaggerConfig {
-  @Bean
-  public OpenAPI customOpenAPI() {
-    return new OpenAPI().addSecurityItem(
-       new SecurityRequirement().addList("bearerAuth")).components(
-       new Components().addSecuritySchemes("bearerAuth", new SecurityScheme().type(
+   @Bean
+   public OpenAPI customOpenAPI() {
+      return new OpenAPI().addSecurityItem(
+        new SecurityRequirement().addList("bearerAuth")).components(
+        new Components().addSecuritySchemes("bearerAuth", new SecurityScheme().type(
           SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
-  }
+   }
 }

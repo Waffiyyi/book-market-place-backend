@@ -14,6 +14,7 @@ import com.waffiyyi.bookmarketplace.validations.EmailValidator;
 import com.waffiyyi.bookmarketplace.validations.PasswordValidator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +29,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
    private final UserRepository userRepository;
    private final PasswordEncoder passwordEncoder;
@@ -39,6 +41,7 @@ public class UserServiceImpl implements UserService {
    @Override
    @Transactional
    public ResponseEntity<AuthResponse> register(User user) {
+      log.info("user"+user);
       if (!EmailValidator.isValid(user.getEmail())) {
          throw new BadRequestException("Invalid email format", HttpStatus.BAD_REQUEST);
       }
