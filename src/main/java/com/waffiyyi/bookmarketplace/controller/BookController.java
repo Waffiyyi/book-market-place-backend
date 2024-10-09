@@ -20,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Tag(name = "Book", description = "This controller manages Book operations")
@@ -134,8 +135,7 @@ public class BookController {
       return bookService.getAllBookCategories();
    }
 
-   @Operation(summary = "Get Featured Books",
-              description = "Used to get featured books")
+   @Operation(summary = "Get Featured Books", description = "Used to get featured books")
    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful",
                                        content = @Content(schema = @Schema(
                                          implementation = Book.class))), @ApiResponse(
@@ -176,8 +176,25 @@ public class BookController {
      schema = @Schema(implementation = ErrorResponse.class))), @ApiResponse(
      responseCode = "500", description = "Internal Server Error!")})
    @GetMapping("/frequently-bought-with")
-   public List<Book> getFrequentlyBoughtWith(@RequestHeader("Authorization") String jwt) {
+   public ResponseEntity<List<Book>> getFrequentlyBoughtWith(
+     @RequestHeader("Authorization") String jwt) {
       User user = userService.findUserByJWTToken(jwt);
-      return bookService.getFrequentlyBoughtWith(user.getId());
+      return new ResponseEntity<>(bookService.getFrequentlyBoughtWith(user.getId()),
+                                  HttpStatus.OK);
+   }
+
+   @Operation(summary = "Create Book",
+              description = "Used to load book data in the database")
+   @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful",
+                                       content = @Content(schema = @Schema(
+                                         implementation = String.class))), @ApiResponse(
+     responseCode = "400", description = "Bad Request", content = @Content(
+     schema = @Schema(implementation = BadRequestException.class))), @ApiResponse(
+     responseCode = "404", description = "No Record Found", content = @Content(
+     schema = @Schema(implementation = ErrorResponse.class))), @ApiResponse(
+     responseCode = "500", description = "Internal Server Error!")})
+   @PostMapping("/load-books")
+   public String loadBooks() throws IOException {
+      return bookService.loadBooks();
    }
 }

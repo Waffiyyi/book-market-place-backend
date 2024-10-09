@@ -1,4 +1,4 @@
-package com.waffiyyi.bookmarketplace.config;
+package com.waffiyyi.bookmarketplace.entities;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-public class ConstantsConfig {
+public class Category {
    @Bean
    public List<String> bookCategoriesAndGenre() {
       return Arrays.asList(
@@ -18,7 +18,9 @@ public class ConstantsConfig {
         "Science Fiction",
         "Biography",
         "Romance",
-        "Historical Fiction",
+        "Memoir",
+        "Cultural",
+        "Family Saga",
         "Self-Help",
         "Health & Wellness",
         "Children's Books",

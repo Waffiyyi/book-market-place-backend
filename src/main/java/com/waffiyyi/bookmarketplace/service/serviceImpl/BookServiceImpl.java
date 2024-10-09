@@ -1,5 +1,7 @@
 package com.waffiyyi.bookmarketplace.service.serviceImpl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waffiyyi.bookmarketplace.entities.Book;
 import com.waffiyyi.bookmarketplace.entities.Transaction;
 import com.waffiyyi.bookmarketplace.exception.BadRequestException;
@@ -11,10 +13,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,6 +30,10 @@ public class BookServiceImpl implements BookService {
    private final BookRepository bookRepository;
    private final List<String> bookCategoriesAndGenre;
    private final TransactionRepository transactionRepository;
+   private RestTemplate restTemplate;
+
+   private static final String API_URL = "https://book-market-place-backend.onrender.com/api/books"; // Update with your actual endpoint
+
 
    @Override
    public Book createBook(Book req) {
@@ -103,7 +111,27 @@ public class BookServiceImpl implements BookService {
       return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
    }
 
+   @Override
+   public String loadBooks() throws IOException {
+      ObjectMapper objectMapper = new ObjectMapper();
+      List<Book> books = objectMapper.readValue(
+        new File("/Users/macbookpro/Desktop/BookMarketPlace/src/main/resources/bookData.json"),
+        new TypeReference<List<Book>>() {});
 
+      String jwtToken = "your-jwt-token";
+      HttpHeaders headers = new HttpHeaders();
+      headers.setBearerAuth(jwtToken);
+
+      RestTemplate restTemplate = new RestTemplate();
+
+      for (Book book : books) {
+         HttpEntity<Book> requestEntity = new HttpEntity<>(book, headers);
+         ResponseEntity<Book> responseEntity = restTemplate.exchange(
+           API_URL, HttpMethod.POST, requestEntity, Book.class);
+      }
+
+      return "Successfully loaded db with books";
+   }
 
 
 }

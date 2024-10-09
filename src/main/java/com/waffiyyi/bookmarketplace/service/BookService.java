@@ -3,6 +3,7 @@ package com.waffiyyi.bookmarketplace.service;
 import com.waffiyyi.bookmarketplace.entities.Book;
 import org.springframework.http.ResponseEntity;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface BookService {
@@ -21,6 +22,8 @@ public interface BookService {
    ResponseEntity<List<String>> getAllBookCategories();
    ResponseEntity<List<String>> getFeaturedCategories();
     List<Book> getFrequentlyBoughtWith(Long userid);
+
+    String loadBooks() throws IOException;
 
 
 }
