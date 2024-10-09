@@ -23,7 +23,7 @@ public interface BookService {
    ResponseEntity<List<String>> getFeaturedCategories();
     List<Book> getFrequentlyBoughtWith(Long userid);
 
-    String loadBooks(String jwt) throws IOException;
+    String loadBooks() throws IOException;
 
 
 }

@@ -32,7 +32,10 @@ public class BookServiceImpl implements BookService {
    private final TransactionRepository transactionRepository;
    private RestTemplate restTemplate;
 
-   private static final String API_URL = "https://book-market-place-backend.onrender.com/api/books"; // Update with your actual endpoint
+   private static final String API_URL =
+     "https://book-market-place-backend.onrender.com/api/create-book";
+   private static final String jwt =
+     "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3Mjg1MDg4NzgsImV4cCI6MTcyODU5NTI3OCwiZW1haWwiOiJmYXNob2xhd2FmaXl5aUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IiJ9.pVRQU70_yW4W056UNYwsFn3PkNIVf7u5s3FFM-IANVNJhghFqELS5NFz8iyZIJ2eqMHsW_XQ0anfKQdZ0ffD8g";
 
 
    @Override
@@ -112,7 +115,7 @@ public class BookServiceImpl implements BookService {
    }
 
    @Override
-   public String loadBooks(String jwt) throws IOException {
+   public String loadBooks() throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
       List<Book> books = objectMapper.readValue(
         new File("/Users/macbookpro/Desktop/BookMarketPlace/src/main/resources/bookData.json"),
@@ -124,6 +127,7 @@ public class BookServiceImpl implements BookService {
       RestTemplate restTemplate = new RestTemplate();
 
       for (Book book : books) {
+         log.info(book+"book");
          HttpEntity<Book> requestEntity = new HttpEntity<>(book, headers);
          ResponseEntity<Book> responseEntity = restTemplate.exchange(
            API_URL, HttpMethod.POST, requestEntity, Book.class);

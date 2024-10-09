@@ -194,8 +194,8 @@ public class BookController {
      schema = @Schema(implementation = ErrorResponse.class))), @ApiResponse(
      responseCode = "500", description = "Internal Server Error!")})
    @PostMapping("/load-books")
-   public String loadBooks(@RequestHeader("Authorization") String jwt) throws
+   public String loadBooks() throws
                                                                        IOException {
-      return bookService.loadBooks(jwt);
+      return bookService.loadBooks();
    }
 }
