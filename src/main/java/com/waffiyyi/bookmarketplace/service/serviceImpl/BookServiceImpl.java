@@ -112,15 +112,14 @@ public class BookServiceImpl implements BookService {
    }
 
    @Override
-   public String loadBooks() throws IOException {
+   public String loadBooks(String jwt) throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
       List<Book> books = objectMapper.readValue(
         new File("/Users/macbookpro/Desktop/BookMarketPlace/src/main/resources/bookData.json"),
         new TypeReference<List<Book>>() {});
 
-      String jwtToken = "your-jwt-token";
       HttpHeaders headers = new HttpHeaders();
-      headers.setBearerAuth(jwtToken);
+      headers.setBearerAuth(jwt);
 
       RestTemplate restTemplate = new RestTemplate();
 
