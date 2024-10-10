@@ -23,7 +23,7 @@ public class CartItem {
     @JsonIgnore
     private Cart cart;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Book book;
 
     private int quantity;

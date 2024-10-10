@@ -22,6 +22,7 @@ import javax.management.BadAttributeValueExpException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -82,17 +83,21 @@ public class PaymentServiceImpl implements PaymentService {
       response.setPayment_url(session.getUrl());
       return response;
    }
-
-   @Override
+@Override
    public void handleSuccessfulPayment(Cart cart, double amountPaid) {
       Transaction transaction = new Transaction();
       transaction.setAmountOfPurchase(amountPaid);
 
-      List<Book> booksPurchased = cart.getItems().stream().map(CartItem::getBook).collect(
-        Collectors.toList());
+      List<Book> booksPurchased = cart.getItems().stream()
+                                      .map(CartItem::getBook)
+                                      .filter(
+                                        Objects::nonNull)
+                                      .collect(Collectors.toList());
+
       transaction.setBooksPurchased(booksPurchased);
       transaction.setDatePurchased(new Date());
       transaction.setUser(cart.getCustomer());
+      log.info("Books purchased: " + booksPurchased);
       transactionRepository.save(transaction);
    }
 }
