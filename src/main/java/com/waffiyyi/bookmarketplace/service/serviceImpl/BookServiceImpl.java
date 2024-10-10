@@ -107,7 +107,8 @@ public class BookServiceImpl implements BookService {
         .flatMap(transaction -> transaction.getBooksPurchased().stream())
         .map(Book::getAuthor)
         .collect(Collectors.toSet());
-
+      log.info("User Transactions: " + userTransactions);
+      log.info("Authors: " + authors);
       Set<Long> frequentlyBoughtBooks = userTransactions.stream().flatMap(
         transaction -> transaction.getBooksPurchased().stream()).map(Book::getId).collect(
         Collectors.toSet());
