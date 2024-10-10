@@ -53,8 +53,8 @@ public class CartServiceImpl implements CartService {
 
      CartItem savedCartItem = cartItemRepository.save(newCartItem);
      Cart cat = cartRepository.save(cart);
-     log.info("savdCartItem"+savedCartItem);
-     log.info("savdCart"+cat);
+     log.info("savdCartItem"+savedCartItem.getCart());
+     log.info("savdCart"+cat.getItems());
       return savedCartItem;
    }
    @Override
