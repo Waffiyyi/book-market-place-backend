@@ -2,6 +2,8 @@ package com.waffiyyi.bookmarketplace.controller;
 
 
 import com.waffiyyi.bookmarketplace.dtos.AddCartItemRequest;
+import com.waffiyyi.bookmarketplace.dtos.CartDTO;
+import com.waffiyyi.bookmarketplace.dtos.CartItemDTO;
 import com.waffiyyi.bookmarketplace.dtos.ErrorResponse;
 import com.waffiyyi.bookmarketplace.entities.Book;
 import com.waffiyyi.bookmarketplace.entities.Cart;
@@ -38,7 +40,7 @@ public class CartController {
    @Operation(summary = "Add item to cart", description = "Used to add item to cart")
    @ApiResponses(value = {
      @ApiResponse(responseCode = "200", description = "Successful", content =
-     @Content(schema = @Schema(implementation = CartItem.class))),
+     @Content(schema = @Schema(implementation = CartItemDTO.class))),
      @ApiResponse(responseCode = "400", description = "Bad Request", content =
      @Content(schema = @Schema(implementation = BadRequestException.class))),
      @ApiResponse(responseCode = "404", description = "No Record Found", content =
@@ -46,18 +48,18 @@ public class CartController {
      @ApiResponse(responseCode = "500", description = "Internal Server Error!")
    })
    @PutMapping("/cart/add")
-   public ResponseEntity<CartItem> addItemToCart(@RequestBody AddCartItemRequest req,
-                                                 @RequestHeader("Authorization")
+   public ResponseEntity<CartItemDTO> addItemToCart(@RequestBody AddCartItemRequest req,
+                                                    @RequestHeader("Authorization")
                                                  String jwt) {
       log.info("i enterded contrpller");
-      CartItem cartItem = cartService.addItemToCart(req, jwt);
+      CartItemDTO cartItem = cartService.addItemToCart(req, jwt);
       return new ResponseEntity<>(cartItem, HttpStatus.OK);
    }
 
    @Operation(summary = "Update cart", description = "Used to update cart")
    @ApiResponses(value = {
      @ApiResponse(responseCode = "200", description = "Successful", content =
-     @Content(schema = @Schema(implementation = CartItem.class))),
+     @Content(schema = @Schema(implementation = CartItemDTO.class))),
      @ApiResponse(responseCode = "400", description = "Bad Request", content =
      @Content(schema = @Schema(implementation = BadRequestException.class))),
      @ApiResponse(responseCode = "404", description = "No Record Found", content =
@@ -65,8 +67,8 @@ public class CartController {
      @ApiResponse(responseCode = "500", description = "Internal Server Error!")
    })
    @PutMapping("/cart-item/update")
-   public ResponseEntity<CartItem> updateCartItem(@RequestBody AddCartItemRequest req) {
-      CartItem cartItem = cartService.updateCartItemQuantity(req.getCartItemId(),
+   public ResponseEntity<CartItemDTO> updateCartItem(@RequestBody AddCartItemRequest req) {
+      CartItemDTO cartItem = cartService.updateCartItemQuantity(req.getCartItemId(),
                                                              req.getQuantity());
       return new ResponseEntity<>(cartItem, HttpStatus.OK);
    }
@@ -75,7 +77,7 @@ public class CartController {
               description = "Used to remove item from cart")
    @ApiResponses(value = {
      @ApiResponse(responseCode = "200", description = "Successful", content =
-     @Content(schema = @Schema(implementation = Cart.class))),
+     @Content(schema = @Schema(implementation = CartDTO.class))),
      @ApiResponse(responseCode = "400", description = "Bad Request", content =
      @Content(schema = @Schema(implementation = BadRequestException.class))),
      @ApiResponse(responseCode = "404", description = "No Record Found", content =
@@ -83,10 +85,10 @@ public class CartController {
      @ApiResponse(responseCode = "500", description = "Internal Server Error!")
    })
    @DeleteMapping("/cart-item/remove")
-   public ResponseEntity<Cart> removeCartItem(@RequestParam Long cartItemId,
+   public ResponseEntity<CartDTO> removeCartItem(@RequestParam Long cartItemId,
                                               @RequestHeader("Authorization")
                                               String jwt) {
-      Cart cart = cartService.removeItemFromCart(cartItemId, jwt);
+      CartDTO cart = cartService.removeItemFromCart(cartItemId, jwt);
       return new ResponseEntity<>(cart, HttpStatus.OK);
    }
 
@@ -112,7 +114,7 @@ public class CartController {
               description = "Used to get  user's cart")
    @ApiResponses(value = {
      @ApiResponse(responseCode = "200", description = "Successful", content =
-     @Content(schema = @Schema(implementation = Cart.class))),
+     @Content(schema = @Schema(implementation = CartDTO.class))),
      @ApiResponse(responseCode = "400", description = "Bad Request", content =
      @Content(schema = @Schema(implementation = BadRequestException.class))),
      @ApiResponse(responseCode = "404", description = "No Record Found", content =
@@ -120,9 +122,9 @@ public class CartController {
      @ApiResponse(responseCode = "500", description = "Internal Server Error!")
    })
    @GetMapping("/cart/user")
-   public ResponseEntity<Cart> findUserCart(@RequestHeader("Authorization") String jwt) {
+   public ResponseEntity<CartDTO> findUserCart(@RequestHeader("Authorization") String jwt) {
       User user = userService.findUserByJWTToken(jwt);
-      Cart cart = cartService.findCartByUserId(user.getId());
+      CartDTO cart = cartService.findCartByUserId(user.getId());
       return new ResponseEntity<>(cart, HttpStatus.OK);
    }
 

@@ -1,5 +1,6 @@
 package com.waffiyyi.bookmarketplace.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -15,19 +16,30 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    private Long Id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+   private Long Id;
    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
 
-    @OneToOne
-    private User customer;
+   @OneToOne
+   @JsonIgnore
+   private User customer;
+
    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+   private Double total;
 
-    private Double total;
+   @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+   @JsonManagedReference
+   @JsonIgnore
+   private List<CartItem> items = new ArrayList<>();
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<CartItem> items = new ArrayList<>();
+   @Override
+   public String toString() {
+      return "Cart{" +
+        "id=" + Id +
+        ", total=" + total +
+        ", items=" + items.size() +
+        '}';
+   }
 }

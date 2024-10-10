@@ -22,6 +22,7 @@ public class CartItem {
 
     @ManyToOne
     @JsonBackReference
+    @JsonIgnore
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -30,5 +31,15 @@ public class CartItem {
     private int quantity;
 
     private Double totalPrice;
+
+   @Override
+   public String toString() {
+      return "CartItem{" +
+        "id=" + Id +
+        ", bookTitle='" + book.getTitle() + '\'' +
+        ", quantity=" + quantity +
+        ", totalPrice=" + totalPrice +
+        '}';
+   }
 
 }

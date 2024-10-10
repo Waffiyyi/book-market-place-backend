@@ -2,6 +2,8 @@ package com.waffiyyi.bookmarketplace.service.serviceImpl;
 
 
 import com.waffiyyi.bookmarketplace.dtos.AddCartItemRequest;
+import com.waffiyyi.bookmarketplace.dtos.CartDTO;
+import com.waffiyyi.bookmarketplace.dtos.CartItemDTO;
 import com.waffiyyi.bookmarketplace.entities.Book;
 import com.waffiyyi.bookmarketplace.entities.Cart;
 import com.waffiyyi.bookmarketplace.entities.CartItem;
@@ -27,28 +29,30 @@ public class CartServiceImpl implements CartService {
    private final BookRepository bookRepository;
 
    @Override
-   public CartItem addItemToCart(AddCartItemRequest req, String jwt) {
+   public CartItemDTO addItemToCart(AddCartItemRequest req, String jwt) {
       User user = userService.findUserByJWTToken(jwt);
       Book book = bookRepository.findById(req.getBookId())
-                                .orElseThrow(() -> new ResourceNotFoundException("Book not found", HttpStatus.BAD_REQUEST));
+                                .orElseThrow(
+                                  () -> new ResourceNotFoundException("Book not found",
+                                                                      HttpStatus.BAD_REQUEST));
 
       Cart cart = cartRepository.findByCustomerId(user.getId());
 
-      // Logging for debugging
       log.info("User: {}", user);
       log.info("Book: {}", book);
-      log.info("Cart: {}", cart);
+      log.info("Cart: {}", cart.getItems());
 
       for (CartItem cartItem : cart.getItems()) {
          if (cartItem.getBook().equals(book)) {
             log.info("Updating existing cart item: {}", cartItem);
             cartItem.setQuantity(cartItem.getQuantity() + req.getQuantity());
-            cartItem.setTotalPrice(cartItem.getBook().getPrice() * cartItem.getQuantity());
-            return cartItemRepository.save(cartItem);
+            cartItem.setTotalPrice(
+              cartItem.getBook().getPrice() * cartItem.getQuantity());
+            cartItemRepository.save(cartItem);
+            return CartMapper.toCartItemDTO(cartItem);
          }
       }
 
-      // Create new cart item if not found
       CartItem newCartItem = new CartItem();
       newCartItem.setBook(book);
       newCartItem.setQuantity(req.getQuantity());
@@ -56,43 +60,44 @@ public class CartServiceImpl implements CartService {
       newCartItem.setCart(cart);
       cart.getItems().add(newCartItem);
 
-      // Log the new cart item
       log.info("Adding new cart item: {}", newCartItem);
       cartItemRepository.save(newCartItem);
       cartRepository.save(cart);
 
-      return newCartItem;
+      return CartMapper.toCartItemDTO(newCartItem);
    }
+
    @Override
-   public CartItem updateCartItemQuantity(Long cartItemId, int quantity) {
-      CartItem cartItem = cartItemRepository.findById(
-        cartItemId).orElseThrow(
-        () -> new ResourceNotFoundException(
-          "Cart item not found",
-          HttpStatus.NOT_FOUND));
+   public CartItemDTO updateCartItemQuantity(Long cartItemId, int quantity) {
+      CartItem cartItem = cartItemRepository.findById(cartItemId)
+                                            .orElseThrow(
+                                              () -> new ResourceNotFoundException(
+                                                "Cart item not found",
+                                                HttpStatus.NOT_FOUND));
+
       cartItem.setQuantity(quantity);
-      cartItem.setTotalPrice(
-        cartItem.getBook().getPrice() * quantity);
-      return cartItemRepository.save(
-        cartItem);
+      cartItem.setTotalPrice(cartItem.getBook().getPrice() * quantity);
+
+      CartItem updatedCartItem = cartItemRepository.save(cartItem);
+      log.info("updated cart item" + updatedCartItem.getCart().getItems());
+      return CartMapper.toCartItemDTO(updatedCartItem);
    }
 
    @Override
-   public Cart removeItemFromCart(Long cartItemId, String jwt) {
-      User user = userService.findUserByJWTToken(
-        jwt);
-      Cart cart = cartRepository.findByCustomerId(
-        user.getId());
-      CartItem cartItem = cartItemRepository.findById(
-        cartItemId).orElseThrow(
-        () -> new ResourceNotFoundException(
-          "Cart item not found",
-          HttpStatus.NOT_FOUND));
+   public CartDTO removeItemFromCart(Long cartItemId, String jwt) {
+      User user = userService.findUserByJWTToken(jwt);
+      Cart cart = cartRepository.findByCustomerId(user.getId());
 
-      cart.getItems().remove(
-        cartItem);
-      return cartRepository.save(
-        cart);
+      CartItem cartItem = cartItemRepository.findById(cartItemId)
+                                            .orElseThrow(
+                                              () -> new ResourceNotFoundException(
+                                                "Cart item not found",
+                                                HttpStatus.NOT_FOUND));
+
+      cart.getItems().remove(cartItem);
+      Cart savedCart = cartRepository.save(cart);
+
+      return CartMapper.toDTO(savedCart);
    }
 
    @Override
@@ -116,22 +121,17 @@ public class CartServiceImpl implements CartService {
    }
 
    @Override
-   public Cart findCartByUserId(Long userId) {
-      Cart cart = cartRepository.findByCustomerId(
-        userId);
-      cart.setTotal(
-        calculateCartTotal(cart));
-      return cart;
+   public CartDTO findCartByUserId(Long userId) {
+      Cart cart = cartRepository.findByCustomerId(userId);
+      cart.setTotal(calculateCartTotal(cart));
+      return CartMapper.toDTO(cart);
    }
 
    @Override
    public Cart clearCart(String jwt) {
-      User user = userService.findUserByJWTToken(
-        jwt);
-      Cart cart = findCartByUserId(
-        user.getId());
+      User user = userService.findUserByJWTToken(jwt);
+      Cart cart = cartRepository.findByCustomerId(user.getId());
       cart.getItems().clear();
-      return cartRepository.save(
-        cart);
+      return cartRepository.save(cart);
    }
 }
