@@ -29,33 +29,39 @@ public class CartServiceImpl implements CartService {
    @Override
    public CartItem addItemToCart(AddCartItemRequest req, String jwt) {
       User user = userService.findUserByJWTToken(jwt);
-
       Book book = bookRepository.findById(req.getBookId())
                                 .orElseThrow(() -> new ResourceNotFoundException("Book not found", HttpStatus.BAD_REQUEST));
 
       Cart cart = cartRepository.findByCustomerId(user.getId());
 
+      // Logging for debugging
+      log.info("User: {}", user);
+      log.info("Book: {}", book);
+      log.info("Cart: {}", cart);
+
       for (CartItem cartItem : cart.getItems()) {
          if (cartItem.getBook().equals(book)) {
-            int newQuantity = cartItem.getQuantity() + req.getQuantity();
-            return updateCartItemQuantity(cartItem.getId(), newQuantity);
+            log.info("Updating existing cart item: {}", cartItem);
+            cartItem.setQuantity(cartItem.getQuantity() + req.getQuantity());
+            cartItem.setTotalPrice(cartItem.getBook().getPrice() * cartItem.getQuantity());
+            return cartItemRepository.save(cartItem);
          }
       }
 
+      // Create new cart item if not found
       CartItem newCartItem = new CartItem();
       newCartItem.setBook(book);
       newCartItem.setQuantity(req.getQuantity());
       newCartItem.setTotalPrice(book.getPrice() * req.getQuantity());
-
       newCartItem.setCart(cart);
-
       cart.getItems().add(newCartItem);
 
-     CartItem savedCartItem = cartItemRepository.save(newCartItem);
-     Cart cat = cartRepository.save(cart);
-     log.info("savdCartItem"+savedCartItem.getCart());
-     log.info("savdCart"+cat.getItems());
-      return savedCartItem;
+      // Log the new cart item
+      log.info("Adding new cart item: {}", newCartItem);
+      cartItemRepository.save(newCartItem);
+      cartRepository.save(cart);
+
+      return newCartItem;
    }
    @Override
    public CartItem updateCartItemQuantity(Long cartItemId, int quantity) {

@@ -19,6 +19,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Slf4j
 public class CartController {
    private final CartService cartService;
    private final UserService userService;
@@ -47,6 +49,7 @@ public class CartController {
    public ResponseEntity<CartItem> addItemToCart(@RequestBody AddCartItemRequest req,
                                                  @RequestHeader("Authorization")
                                                  String jwt) {
+      log.info("i enterded contrpller");
       CartItem cartItem = cartService.addItemToCart(req, jwt);
       return new ResponseEntity<>(cartItem, HttpStatus.OK);
    }
