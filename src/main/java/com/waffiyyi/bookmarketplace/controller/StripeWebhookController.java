@@ -11,6 +11,7 @@ import com.waffiyyi.bookmarketplace.entities.Cart;
 import com.waffiyyi.bookmarketplace.repository.CartRepository;
 import com.waffiyyi.bookmarketplace.repository.TransactionRepository;
 import com.waffiyyi.bookmarketplace.service.PaymentService;
+import com.waffiyyi.bookmarketplace.service.serviceImpl.CartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -85,7 +86,7 @@ public class StripeWebhookController {
          Cart cart = cartRepository.findById(cartId).orElse(null);
          log.info("cart passed to transaction"+cart);
          if (cart != null) {
-            paymentService.handleSuccessfulPayment(cart, amountPaid);
+            paymentService.handleSuccessfulPayment(CartMapper.toDTO(cart), amountPaid);
             log.info("Transaction saved successfully with amount: " + amountPaid);
          } else {
             log.error("Cart not found for id" + cartId);

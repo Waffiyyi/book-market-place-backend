@@ -4,13 +4,14 @@ import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
+import com.waffiyyi.bookmarketplace.dtos.CartDTO;
+import com.waffiyyi.bookmarketplace.dtos.CartItemDTO;
 import com.waffiyyi.bookmarketplace.dtos.PaymentResponse;
-import com.waffiyyi.bookmarketplace.entities.Book;
-import com.waffiyyi.bookmarketplace.entities.Cart;
-import com.waffiyyi.bookmarketplace.entities.CartItem;
-import com.waffiyyi.bookmarketplace.entities.Transaction;
+import com.waffiyyi.bookmarketplace.entities.*;
 import com.waffiyyi.bookmarketplace.exception.BadRequestException;
+import com.waffiyyi.bookmarketplace.exception.UserNotFoundException;
 import com.waffiyyi.bookmarketplace.repository.TransactionRepository;
+import com.waffiyyi.bookmarketplace.repository.UserRepository;
 import com.waffiyyi.bookmarketplace.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PaymentServiceImpl implements PaymentService {
    private final TransactionRepository transactionRepository;
+   private final UserRepository userRepository;
    @Value("${stripe.secret.key}")
    private String stripeSecretKey;
    @Value("${app.redirect.success}")
@@ -38,18 +40,18 @@ public class PaymentServiceImpl implements PaymentService {
    private String cancelURL;
 
    @Override
-   public PaymentResponse createPaymentLink(Cart cart) throws StripeException {
+   public PaymentResponse createPaymentLink(CartDTO cart) throws StripeException {
       Stripe.apiKey = stripeSecretKey;
-      log.info("cart"+cart);
+      log.info("cart" + cart);
       if (cart.getItems() == null || cart.getItems().isEmpty()) {
          throw new BadRequestException("Cart is empty or has no items.",
                                        HttpStatus.BAD_REQUEST);
       }
-      log.info("cart that created payment"+cart);
-      log.info("cartitems that created payment "+cart.getItems());
+      log.info("cart that created payment" + cart);
+      log.info("cartitems that created payment " + cart.getItems());
       List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
 
-      for (CartItem item : cart.getItems()) {
+      for (CartItemDTO item : cart.getItems()) {
          long unitAmount = (long) (item.getBook().getPrice() * 100);
 
          SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem
@@ -86,20 +88,24 @@ public class PaymentServiceImpl implements PaymentService {
       response.setPayment_url(session.getUrl());
       return response;
    }
-@Override
-   public void handleSuccessfulPayment(Cart cart, double amountPaid) {
+
+   @Override
+   public void handleSuccessfulPayment(CartDTO cart, double amountPaid) {
       Transaction transaction = new Transaction();
+      User user =
+        userRepository.findById(cart.getUserId()).orElseThrow(
+          () -> new UserNotFoundException("User not found", HttpStatus.NOT_FOUND));
       transaction.setAmountOfPurchase(amountPaid);
 
       List<Book> booksPurchased = cart.getItems().stream()
-                                      .map(CartItem::getBook)
+                                      .map(CartItemDTO::getBook)
                                       .filter(
                                         Objects::nonNull)
                                       .collect(Collectors.toList());
 
       transaction.setBooksPurchased(booksPurchased);
       transaction.setDatePurchased(new Date());
-      transaction.setUser(cart.getCustomer());
+      transaction.setUser(user);
       log.info("Books purchased: " + booksPurchased);
       transactionRepository.save(transaction);
    }

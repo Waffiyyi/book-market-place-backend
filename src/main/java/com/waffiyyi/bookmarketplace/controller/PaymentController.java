@@ -1,6 +1,7 @@
 package com.waffiyyi.bookmarketplace.controller;
 
 import com.stripe.exception.StripeException;
+import com.waffiyyi.bookmarketplace.dtos.CartDTO;
 import com.waffiyyi.bookmarketplace.dtos.PaymentResponse;
 import com.waffiyyi.bookmarketplace.entities.Cart;
 import com.waffiyyi.bookmarketplace.service.PaymentService;
@@ -18,7 +19,7 @@ public class PaymentController {
 
 
    @PostMapping("/payment-checkout")
-   public PaymentResponse checkout(@RequestBody Cart cart) throws StripeException {
+   public PaymentResponse checkout(@RequestBody CartDTO cart) throws StripeException {
       return paymentService.createPaymentLink(cart);
    }
 }
