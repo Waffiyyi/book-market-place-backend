@@ -59,9 +59,6 @@ public class StripeWebhookController {
          case "checkout.session.completed", "checkout.session.async_payment_succeeded":
             handleSuccessfulPayment(payload);
             break;
-         case "checkout.session.expired", "checkout.session.async_payment_failed", "payment_intent.canceled":
-            handleFailedPayment(payload);
-            break;
          default:
             log.warn("Unhandled event type: " + eventType);
             break;
@@ -86,6 +83,7 @@ public class StripeWebhookController {
            objectMap.get("amount_total").toString()) / 100;
 
          Cart cart = cartRepository.findById(cartId).orElse(null);
+         log.info("cart passed to transaction"+cart);
          if (cart != null) {
             paymentService.handleSuccessfulPayment(cart, amountPaid);
             log.info("Transaction saved successfully with amount: " + amountPaid);
@@ -99,7 +97,4 @@ public class StripeWebhookController {
       }
    }
 
-   private void handleFailedPayment(String payload) {
-      log.info("Handling failed payment");
-   }
 }
