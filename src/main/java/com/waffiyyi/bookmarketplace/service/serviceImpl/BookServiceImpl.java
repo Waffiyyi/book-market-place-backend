@@ -93,8 +93,8 @@ public class BookServiceImpl implements BookService {
    public ResponseEntity<List<String>> getFeaturedCategories() {
       List<String> categories = bookRepository.findTopCategoriesByBooksAndRating();
       if (categories == null) {
-         throw new ResourceNotFoundException("No featured categir",
-                                             HttpStatus.BAD_REQUEST);
+         throw new ResourceNotFoundException("No featured categories",
+                                             HttpStatus.NOT_FOUND);
       }
       return new ResponseEntity<>(new ArrayList<>(categories), HttpStatus.OK);
    }
@@ -111,7 +111,11 @@ public class BookServiceImpl implements BookService {
       Set<Long> frequentlyBoughtBooks = userTransactions.stream().flatMap(
         transaction -> transaction.getBooksPurchased().stream()).map(Book::getId).collect(
         Collectors.toSet());
-      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
+      //ideally we should use this if db contains more than one book by same
+      // Author
+//      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
+      //using this as db data is not much
+      return bookRepository.findByAuthorIn(authors);
    }
 
    @Override

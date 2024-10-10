@@ -28,7 +28,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
    @Query("SELECT c FROM Book b JOIN b.categories c GROUP BY c ORDER BY AVG(b.rating) DESC")
    List<String> findTopCategoriesByBooksAndRating();
 
-   List<Book> findByAuthorInAndIdNotIn(Set<String> authors, Set<Long> bookIds);
+//   List<Book> findByAuthorInAndIdNotIn(Set<String> authors, Set<Long> bookIds);
+   List<Book> findByAuthorIn(Set<String> authors);
 
 
 
