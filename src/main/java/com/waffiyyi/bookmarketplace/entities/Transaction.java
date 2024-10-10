@@ -15,7 +15,7 @@ public class Transaction {
    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
    private Long id;
    private Double amountOfPurchase;
-   @OneToMany(fetch = FetchType.EAGER)
+   @ManyToMany
    private List<Book> booksPurchased;
    private Date datePurchased;
    @ManyToOne

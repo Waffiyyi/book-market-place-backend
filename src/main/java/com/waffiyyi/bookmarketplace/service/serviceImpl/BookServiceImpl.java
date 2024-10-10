@@ -114,9 +114,9 @@ public class BookServiceImpl implements BookService {
         Collectors.toSet());
       //ideally we should use this if db contains more than one book by same
       // Author
-//      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
+      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
       //using this as db data is not much
-      return bookRepository.findByAuthorIn(authors);
+//      return bookRepository.findByAuthorIn(authors);
    }
 
    @Override

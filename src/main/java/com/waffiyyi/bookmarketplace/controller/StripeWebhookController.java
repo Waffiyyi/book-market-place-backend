@@ -10,6 +10,7 @@ import com.stripe.net.Webhook;
 import com.waffiyyi.bookmarketplace.entities.Cart;
 import com.waffiyyi.bookmarketplace.repository.CartRepository;
 import com.waffiyyi.bookmarketplace.repository.TransactionRepository;
+import com.waffiyyi.bookmarketplace.service.CartService;
 import com.waffiyyi.bookmarketplace.service.PaymentService;
 import com.waffiyyi.bookmarketplace.service.serviceImpl.CartMapper;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class StripeWebhookController {
    private final TransactionRepository transactionRepository;
    private final PaymentService paymentService;
    private final CartRepository cartRepository;
+   private final CartService cartService;
    private final ObjectMapper objectMapper = new ObjectMapper();
    @Value("${stripe.signing.key}")
    private String signingKey;
@@ -87,7 +89,9 @@ public class StripeWebhookController {
          log.info("cart passed to transaction"+cart);
          if (cart != null) {
             paymentService.handleSuccessfulPayment(CartMapper.toDTO(cart), amountPaid);
-            log.info("Transaction saved successfully with amount: " + amountPaid);
+            cart.getItems().clear();
+            cartRepository.save(cart);
+         log.info("Transaction saved successfully with amount: " + amountPaid);
          } else {
             log.error("Cart not found for id" + cartId);
          }

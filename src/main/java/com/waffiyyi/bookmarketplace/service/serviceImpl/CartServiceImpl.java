@@ -49,6 +49,7 @@ public class CartServiceImpl implements CartService {
             cartItem.setTotalPrice(
               cartItem.getBook().getPrice() * cartItem.getQuantity());
             cartItemRepository.save(cartItem);
+            cartRepository.save(cart);
             return CartMapper.toCartItemDTO(cartItem);
          }
       }
@@ -74,10 +75,8 @@ public class CartServiceImpl implements CartService {
                                               () -> new ResourceNotFoundException(
                                                 "Cart item not found",
                                                 HttpStatus.NOT_FOUND));
-
       cartItem.setQuantity(quantity);
       cartItem.setTotalPrice(cartItem.getBook().getPrice() * quantity);
-
       CartItem updatedCartItem = cartItemRepository.save(cartItem);
       log.info("updated cart item" + updatedCartItem.getCart().getItems());
       return CartMapper.toCartItemDTO(updatedCartItem);
