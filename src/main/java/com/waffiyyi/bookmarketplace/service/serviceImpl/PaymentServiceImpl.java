@@ -40,12 +40,13 @@ public class PaymentServiceImpl implements PaymentService {
    @Override
    public PaymentResponse createPaymentLink(Cart cart) throws StripeException {
       Stripe.apiKey = stripeSecretKey;
+      log.info("cart"+cart);
       if (cart.getItems() == null || cart.getItems().isEmpty()) {
          throw new BadRequestException("Cart is empty or has no items.",
                                        HttpStatus.BAD_REQUEST);
       }
-//      log.info("cart that created payment"+cart);
-//      log.info("cartitems that created payment "+cart.getItems());
+      log.info("cart that created payment"+cart);
+      log.info("cartitems that created payment "+cart.getItems());
       List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
 
       for (CartItem item : cart.getItems()) {
