@@ -51,9 +51,11 @@ public class CartServiceImpl implements CartService {
 
       cart.getItems().add(newCartItem);
 
-      cartItemRepository.save(newCartItem);
-      cartRepository.save(cart);
-      return newCartItem;
+     CartItem savedCartItem = cartItemRepository.save(newCartItem);
+     Cart cat = cartRepository.save(cart);
+     log.info("savdCartItem"+savedCartItem);
+     log.info("savdCart"+cat);
+      return savedCartItem;
    }
    @Override
    public CartItem updateCartItemQuantity(Long cartItemId, int quantity) {
