@@ -1,5 +1,6 @@
 package com.waffiyyi.bookmarketplace.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -20,7 +21,7 @@ public class CartItem {
     private Long Id;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.EAGER)

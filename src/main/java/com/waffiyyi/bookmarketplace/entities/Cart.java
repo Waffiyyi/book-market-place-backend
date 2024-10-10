@@ -1,5 +1,6 @@
 package com.waffiyyi.bookmarketplace.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,6 @@ public class Cart {
     private Double total;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<CartItem> items = new ArrayList<>();
 }
