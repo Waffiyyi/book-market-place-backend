@@ -22,6 +22,7 @@ public class CartItem {
 
     @ManyToOne
     @JsonBackReference
+    @JsonIgnore
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.EAGER)

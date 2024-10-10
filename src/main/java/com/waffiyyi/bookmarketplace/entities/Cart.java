@@ -23,14 +23,13 @@ public class Cart {
    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
 
    @OneToOne
-   @JsonIgnore
    private User customer;
 
    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
    private Double total;
 
    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-   @JsonManagedReference
+   @JsonIgnore
    private List<CartItem> items = new ArrayList<>();
 
    @Override
