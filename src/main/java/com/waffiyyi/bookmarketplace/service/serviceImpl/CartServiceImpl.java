@@ -28,43 +28,32 @@ public class CartServiceImpl implements CartService {
 
    @Override
    public CartItem addItemToCart(AddCartItemRequest req, String jwt) {
-      User user = userService.findUserByJWTToken(
-        jwt);
+      User user = userService.findUserByJWTToken(jwt);
 
-      Book book =
-        bookRepository.findById(req.getBookId()).orElseThrow(
-          () -> new ResourceNotFoundException("Book not found", HttpStatus.BAD_REQUEST));
+      Book book = bookRepository.findById(req.getBookId())
+                                .orElseThrow(() -> new ResourceNotFoundException("Book not found", HttpStatus.BAD_REQUEST));
 
-      Cart cart = cartRepository.findByCustomerId(
-        user.getId());
+      Cart cart = cartRepository.findByCustomerId(user.getId());
 
       for (CartItem cartItem : cart.getItems()) {
-         if (cartItem.getBook().equals(
-           book)) {
+         if (cartItem.getBook().equals(book)) {
             int newQuantity = cartItem.getQuantity() + req.getQuantity();
-            return updateCartItemQuantity(
-              cartItem.getId(),
-              newQuantity);
+            return updateCartItemQuantity(cartItem.getId(), newQuantity);
          }
       }
 
       CartItem newCartItem = new CartItem();
-
       newCartItem.setBook(book);
+      newCartItem.setQuantity(req.getQuantity());
+      newCartItem.setTotalPrice(book.getPrice() * req.getQuantity());
+
       newCartItem.setCart(cart);
-      newCartItem.setQuantity(
-        req.getQuantity());
 
-      CartItem savedCartItem = cartItemRepository.save(
-        newCartItem);
+      cart.getItems().add(newCartItem);
 
-      cart.getItems().add(
-        savedCartItem);
-
-
-      return savedCartItem;
+      cartItemRepository.save(newCartItem);
+      return newCartItem;
    }
-
    @Override
    public CartItem updateCartItemQuantity(Long cartItemId, int quantity) {
       CartItem cartItem = cartItemRepository.findById(
