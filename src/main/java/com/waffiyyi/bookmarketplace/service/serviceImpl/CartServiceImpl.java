@@ -49,6 +49,7 @@ public class CartServiceImpl implements CartService {
             cartItem.setTotalPrice(
               cartItem.getBook().getPrice() * cartItem.getQuantity());
             cartItemRepository.save(cartItem);
+            calculateCartTotal(cart);
             cartRepository.save(cart);
             return CartMapper.toCartItemDTO(cartItem);
          }
