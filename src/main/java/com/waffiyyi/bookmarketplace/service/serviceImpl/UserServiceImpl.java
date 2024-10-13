@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
    @Override
    @Transactional
    public ResponseEntity<AuthResponse> register(User user) {
-      log.info("user"+user);
       if (!EmailValidator.isValid(user.getEmail())) {
          throw new BadRequestException("Invalid email format", HttpStatus.BAD_REQUEST);
       }

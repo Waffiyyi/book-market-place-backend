@@ -106,7 +106,6 @@ public class CartServiceImpl implements CartService {
       for (CartItem cartItem : cart.getItems()) {
          total += cartItem.getBook().getPrice() * cartItem.getQuantity();
       }
-
       return total;
    }
 
@@ -123,6 +122,7 @@ public class CartServiceImpl implements CartService {
    public CartDTO findCartByUserId(Long userId) {
       Cart cart = cartRepository.findByCustomerId(userId);
       cart.setTotal(calculateCartTotal(cart));
+      cartRepository.save(cart);
       return CartMapper.toDTO(cart);
    }
 

@@ -71,7 +71,6 @@ public class PaymentServiceImpl implements PaymentService {
 
          lineItems.add(lineItem);
       }
-    log.info("lineItems"+lineItems);
       SessionCreateParams params = SessionCreateParams
         .builder()
         .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
