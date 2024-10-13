@@ -63,8 +63,8 @@ public class CartServiceImpl implements CartService {
 
       log.info("Adding new cart item: {}", newCartItem);
       cartItemRepository.save(newCartItem);
+      calculateCartTotal(cart);
       cartRepository.save(cart);
-
       return CartMapper.toCartItemDTO(newCartItem);
    }
 
