@@ -2,7 +2,6 @@ package com.waffiyyi.bookmarketplace.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.model.Event;
@@ -38,8 +37,7 @@ public class StripeWebhookController {
 
    @PostMapping
    public ResponseEntity<String> handleStripeEvent(@RequestBody String payload,
-                                                   @RequestHeader("Stripe-Signature")
-                                                   String sigHeader) {
+                                                   @RequestHeader("Stripe-Signature") String sigHeader) {
       log.info("Received Stripe signature header: " + sigHeader);
       log.info("Webhook initiated with payload: " + payload);
 
@@ -51,15 +49,21 @@ public class StripeWebhookController {
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid signature");
       } catch (Exception e) {
          log.error("Failed to parse webhook event: " + e.getMessage(), e);
-         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-           "Webhook error");
+         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Webhook error");
       }
 
       String eventType = event.getType();
       log.info("Stripe event type: " + eventType);
 
+      String clientReferenceId = extractClientReferenceId(payload);
+      if (clientReferenceId == null || !cartRepository.existsById(Long.valueOf(clientReferenceId))) {
+         log.info("Ignoring event; clientReferenceId does not match a known Cart ID.");
+         return ResponseEntity.ok("Event ignored");
+      }
+
       switch (eventType) {
-         case "checkout.session.completed", "checkout.session.async_payment_succeeded":
+         case "checkout.session.completed":
+         case "checkout.session.async_payment_succeeded":
             handleSuccessfulPayment(payload);
             break;
          default:
@@ -72,9 +76,7 @@ public class StripeWebhookController {
 
    private void handleSuccessfulPayment(String payload) {
       try {
-         Map<String, Object> eventMap = objectMapper.readValue(payload,
-                                                               new TypeReference<>() {
-                                                               });
+         Map<String, Object> eventMap = objectMapper.readValue(payload, new TypeReference<>() {});
          Map<String, Object> dataMap = (Map<String, Object>) eventMap.get("data");
          Map<String, Object> objectMap = (Map<String, Object>) dataMap.get("object");
 
@@ -82,18 +84,17 @@ public class StripeWebhookController {
 
          String clientReferenceId = (String) objectMap.get("client_reference_id");
          Long cartId = Long.valueOf(clientReferenceId);
-         Double amountPaid = Double.valueOf(
-           objectMap.get("amount_total").toString()) / 100;
+         Double amountPaid = Double.valueOf(objectMap.get("amount_total").toString()) / 100;
 
          Cart cart = cartRepository.findById(cartId).orElse(null);
-         log.info("cart passed to transaction"+cart);
+         log.info("Cart passed to transaction: " + cart);
          if (cart != null) {
             paymentService.handleSuccessfulPayment(CartMapper.toDTO(cart), amountPaid);
             cart.getItems().clear();
             cartRepository.save(cart);
-         log.info("Transaction saved successfully with amount: " + amountPaid);
+            log.info("Transaction saved successfully with amount: " + amountPaid);
          } else {
-            log.error("Cart not found for id" + cartId);
+            log.error("Cart not found for id " + cartId);
          }
       } catch (JsonProcessingException ex) {
          throw new RuntimeException(ex);
@@ -102,4 +103,15 @@ public class StripeWebhookController {
       }
    }
 
+   private String extractClientReferenceId(String payload) {
+      try {
+         Map<String, Object> eventMap = objectMapper.readValue(payload, new TypeReference<>() {});
+         Map<String, Object> dataMap = (Map<String, Object>) eventMap.get("data");
+         Map<String, Object> objectMap = (Map<String, Object>) dataMap.get("object");
+         return (String) objectMap.get("client_reference_id");
+      } catch (Exception e) {
+         log.error("Failed to extract clientReferenceId: " + e.getMessage(), e);
+         return null;
+      }
+   }
 }
