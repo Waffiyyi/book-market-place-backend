@@ -27,8 +27,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Cart", description = "This controller manages Cart operations")
-@OpenAPIDefinition(info = @Info(title = "CART CONTROLLER", version = "1.0",
-                                description = "CART SERVICE API documentation"))
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor

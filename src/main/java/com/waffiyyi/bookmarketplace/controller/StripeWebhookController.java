@@ -12,6 +12,7 @@ import com.waffiyyi.bookmarketplace.repository.TransactionRepository;
 import com.waffiyyi.bookmarketplace.service.CartService;
 import com.waffiyyi.bookmarketplace.service.PaymentService;
 import com.waffiyyi.bookmarketplace.service.serviceImpl.CartMapper;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ import java.util.Map;
 @RequestMapping("/stripe/webhook")
 @RequiredArgsConstructor
 @Slf4j
+@Hidden
 public class StripeWebhookController {
 
    private final TransactionRepository transactionRepository;

@@ -11,13 +11,14 @@ public class Category {
    @Bean
    public List<String> bookCategoriesAndGenre() {
       return Arrays.asList(
+        "Classic",
         "Fiction",
-        "Non-Fiction",
-        "Mystery & Thriller",
+        "Thriller",
         "Fantasy",
         "Science Fiction",
         "Biography",
         "Romance",
+        "War",
         "Memoir",
         "Cultural",
         "Family Saga",
@@ -37,7 +38,9 @@ public class Category {
         "Reference",
         "Parenting & Family",
         "Humor",
-        "Sports & Outdoors"
+        "Sports & Outdoors",
+        "Dystopian",
+        "Mystery"
       );
    }
 }

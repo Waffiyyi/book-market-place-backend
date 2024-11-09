@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
                                                    email = "fasholawafiyyi@gmail.com"),
                                 license = @License(name = "licence", url = "waffiyyi")
 
-), servers = {@Server(url = "https://book-market-place-backend.onrender.com",
+), servers = {@Server(url = "https://disappointed-donnie-bookmarketplacebackend-58ffda1b.koyeb.app",
                       description = "Production Server"),
 
   @Server(url = "http://localhost:8015", description = "Local Server")},

@@ -22,8 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Auth", description = "This controller manages Auth operations")
-@OpenAPIDefinition(info = @Info(title = "AUTH CONTROLLER", version = "1.0",
-                                description = "AUTH SERVICE API documentation"))
+
 @RestController
 @RequestMapping("auth")
 @RequiredArgsConstructor

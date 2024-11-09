@@ -11,7 +11,7 @@
     "rating": 4.2,
     "description": "A story about the Jazz Age in the United States.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
+    "image": "https://m.media-amazon.com/images/I/41BiT3sOQBL._SL500_.jpg",
     "inStock": false
   },
   {
@@ -26,7 +26,7 @@
     "rating": 4.3,
     "description": "A novel about the serious issues of rape and racial inequality.",
     "price": 7.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780061120084-M.jpg",
+    "image": "https://m.media-amazon.com/images/I/51tDHl8Z7cL._SL500_.jpg",
     "inStock": false
   },
   {
@@ -34,14 +34,14 @@
     "author": "George Orwell",
     "categories": [
       "Classic",
-      "Dystopian"
+      "Fantasy"
     ],
     "genre": "Novel",
     "dateReleased": "1949-06-08",
     "rating": 4.6,
     "description": "A dystopian novel set in a totalitarian society under constant surveillance.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780451524935-M.jpg",
+    "image": "https://m.media-amazon.com/images/I/41L+OrmfZML._SL500_.jpg",
     "inStock": false
   },
   {
@@ -56,8 +56,20 @@
     "rating": 4.8,
     "description": "A fantasy story about Bilbo Baggins and his unexpected adventure.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780345339683-M.jpg",
+    "image": "https://m.media-amazon.com/images/I/51phEoA5C9L._SL500_.jpg",
     "inStock": false
+  },
+  {
+    "title": "The Road",
+    "author": "Cormac McCarthy",
+    "categories": ["Post-Apocalyptic", "Literature"],
+    "genre": "Novel",
+    "dateReleased": "2006-09-26",
+    "rating": 4.4,
+    "description": "A father and son journey through a devastated, post-apocalyptic landscape.",
+    "price": 11.99,
+    "image": "https://m.media-amazon.com/images/I/41GuWgTvzoL._SL500_.jpg",
+    "inStock": true
   },
   {
     "title": "The Catcher in the Rye",
@@ -71,21 +83,21 @@
     "rating": 3.9,
     "description": "A story about teenage alienation and rebellion.",
     "price": 6.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780316769488-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/81OthjkJBuL._SL500_.jpg"
   },
   {
     "title": "The Grapes of Wrath",
     "author": "John Steinbeck",
     "categories": [
       "Classic",
-      "Historical Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "1939-04-14",
     "rating": 4.1,
     "description": "A novel about the struggles of a poor family during the Great Depression.",
     "price": 7.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780143039433-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51JTBZaDaML._SL500_.jpg"
   },
   {
     "title": "The Alchemist",
@@ -99,7 +111,7 @@
     "rating": 4.0,
     "description": "A story about Santiago, a shepherd boy, on his quest to find a treasure.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780062315002-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51Z0nLAfLmL._SL500_.jpg"
   },
   {
     "title": "The Lord of the Rings",
@@ -113,35 +125,35 @@
     "rating": 4.9,
     "description": "An epic high-fantasy novel set in Middle-earth, detailing the quest to destroy the One Ring.",
     "price": 25.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780618640157-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/31fiP+vzJiL._SL500_.jpg"
   },
   {
     "title": "The Catch-22",
     "author": "Joseph Heller",
     "categories": [
       "Classic",
-      "Satire"
+      "War"
     ],
     "genre": "Novel",
     "dateReleased": "1961-11-10",
     "rating": 4.1,
     "description": "A satirical novel about the absurdities of war.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781451626650-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51a-3BjXgXL._SL500_.jpg"
   },
   {
     "title": "Crime and Punishment",
     "author": "Fyodor Dostoevsky",
     "categories": [
       "Classic",
-      "Philosophical Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "1866-01-01",
     "rating": 4.4,
     "description": "A novel that delves into the mind of a young man who commits a crime.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780143058144-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/31Q3Lt4ir3L._SL500_.jpg"
   },
   {
     "title": "Anna Karenina",
@@ -155,63 +167,46 @@
     "rating": 4.5,
     "description": "A tragic story of love and betrayal in aristocratic Russia.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780199536061-M.jpg"
-  },
-  {
-    "title": "The Road",
-    "author": "Cormac McCarthy",
-    "categories": [
-      "Post-Apocalyptic",
-      "Fiction"
-    ],
-    "genre": "Novel",
-    "dateReleased": "2006-09-26",
-    "rating": 4.0,
-    "description": "A post-apocalyptic novel about a father and son's survival journey.",
-    "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780307387899-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41D7oQI8RzL._SL500_.jpg"
   },
   {
     "title": "Wuthering Heights",
     "author": "Emily Brontë",
     "categories": [
       "Classic",
-      "Romantic Tragedy"
+      "Romance"
     ],
     "genre": "Novel",
     "dateReleased": "1847-12-01",
     "rating": 4.1,
     "description": "A story of intense and passionate love between Heathcliff and Catherine.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439556-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/31+gKtDZpwL._SL500_.jpg"
   },
   {
     "title": "The Picture of Dorian Gray",
     "author": "Oscar Wilde",
-    "categories": [
-      "Classic",
-      "Philosophical Fiction"
-    ],
+    "categories": ["Fiction"],
     "genre": "Novel",
     "dateReleased": "1890-07-20",
     "rating": 4.2,
     "description": "A story about the portrait of a man that ages while he remains young and beautiful.",
     "price": 6.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439570-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/514brc871rL._SL500_.jpg"
   },
   {
     "title": "A Farewell to Arms",
     "author": "Ernest Hemingway",
     "categories": [
       "Classic",
-      "Historical Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "1929-09-27",
     "rating": 4.0,
     "description": "A novel set during World War I about love and loss.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780684801469-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51-CqOWAiJL._SL500_.jpg"
   },
   {
     "title": "Moby-Dick",
@@ -225,35 +220,35 @@
     "rating": 4.2,
     "description": "A whaling adventure and exploration of obsession.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780142437247-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41RVtE3JJIL._SL500_.jpg"
   },
   {
     "title": "The Iliad",
     "author": "Homer",
     "categories": [
       "Classic",
-      "Epic Poetry"
+      "Poetry"
     ],
     "genre": "Poetry",
     "dateReleased": "1851-10-18",
     "rating": 4.4,
     "description": "An epic poem about the Trojan War.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780140275369-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/31YKD6XVpKL._SL500_.jpg"
   },
   {
     "title": "The Sound and the Fury",
     "author": "William Faulkner",
     "categories": [
       "Classic",
-      "Modernist Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "1929-10-07",
     "rating": 4.0,
     "description": "A novel about the decline of the Compson family in the American South.",
     "price": 9.49,
-    "image": "https://covers.openlibrary.org/b/isbn/9780679732242-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41JWakG+VkL._SL500_.jpg"
   },
   {
     "title": "Lolita",
@@ -267,7 +262,7 @@
     "rating": 4.1,
     "description": "A controversial novel about an older man’s obsession with a young girl.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780679723165-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/415ITlxRQTL._SL500_.jpg"
   },
   {
     "title": "The Sun Also Rises",
@@ -281,7 +276,7 @@
     "rating": 4.0,
     "description": "A novel about the disillusionment of the Lost Generation following World War I.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780684800714-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41-tLUc8zHL._SL500_.jpg"
   },
   {
     "title": "Animal Farm",
@@ -295,13 +290,13 @@
     "rating": 4.4,
     "description": "A political allegory that satirizes the Russian Revolution.",
     "price": 7.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780451526342-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51P1OR+KGjL._SL500_.jpg"
   },
   {
     "title": "Brave New World",
     "author": "Aldous Huxley",
     "categories": [
-      "Science Fiction",
+      "Fiction",
       "Dystopian"
     ],
     "genre": "Novel",
@@ -309,7 +304,7 @@
     "rating": 4.1,
     "description": "A dystopian novel about a future society obsessed with consumerism and control.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780060850524-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41RgB1IJkLL._SL500_.jpg"
   },
   {
     "title": "The Odyssey",
@@ -323,7 +318,7 @@
     "rating": 4.4,
     "description": "An epic poem about Odysseus' journey home after the fall of Troy.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780140268867-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41neMHlK5SL._SL500_.jpg"
   },
   {
     "title": "A Clockwork Orange",
@@ -337,7 +332,7 @@
     "rating": 4.0,
     "description": "A dystopian novel about free will and the nature of evil.",
     "price": 7.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780393312836-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41kbcBjH5aL._SL500_.jpg"
   },
   {
     "title": "The Metamorphosis",
@@ -351,13 +346,13 @@
     "rating": 4.2,
     "description": "A novella about a man who wakes up to find himself transformed into a giant insect.",
     "price": 5.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780805209631-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41E7vV3AAlL._SL500_.jpg"
   },
   {
     "title": "The Trial",
     "author": "Franz Kafka",
     "categories": [
-      "Philosophical Fiction",
+      "Fiction",
       "Dystopian"
     ],
     "genre": "Novel",
@@ -365,7 +360,7 @@
     "rating": 4.1,
     "description": "A man is suddenly arrested and prosecuted by a remote, inaccessible authority.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780805209990-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51wwQrYELFL._SL500_.jpg"
   },
   {
     "title": "The Call of the Wild",
@@ -379,35 +374,35 @@
     "rating": 4.2,
     "description": "A story of survival and adventure in the Yukon wilderness.",
     "price": 6.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780486264721-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/415xAq2IWKL._SL500_.jpg"
   },
   {
     "title": "The Scarlet Letter",
     "author": "Nathaniel Hawthorne",
     "categories": [
       "Classic",
-      "Historical Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "1850-03-16",
     "rating": 4.1,
     "description": "A novel about the moral struggles of a woman condemned to wear a scarlet letter.",
     "price": 7.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780142437261-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41mpzyHHZbL._SL500_.jpg"
   },
   {
     "title": "War and Peace",
     "author": "Leo Tolstoy",
     "categories": [
       "Classic",
-      "Historical Fiction"
+      "War"
     ],
     "genre": "Novel",
     "dateReleased": "1869-01-01",
     "rating": 4.5,
     "description": "An epic novel about Russian society during the Napoleonic wars.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781400079988-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41CVQRVeNZL._SL500_.jpg"
   },
   {
     "title": "The Brothers Karamazov",
@@ -421,7 +416,7 @@
     "rating": 4.5,
     "description": "A philosophical exploration of faith, doubt, and morality in 19th-century Russia.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780374528379-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/5179PDOcmJL._SL500_.jpg"
   },
   {
     "title": "Jane Eyre",
@@ -435,7 +430,7 @@
     "rating": 4.4,
     "description": "A novel about the emotional and moral growth of an orphaned girl.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780142437209-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41yWEfbRyPL._SL500_.jpg"
   },
   {
     "title": "Les Misérables",
@@ -449,21 +444,7 @@
     "rating": 4.5,
     "description": "A tale of redemption set against the backdrop of the French Revolution.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780140444308-M.jpg"
-  },
-  {
-    "title": "Wuthering Heights",
-    "author": "Emily Brontë",
-    "categories": [
-      "Classic",
-      "Romance"
-    ],
-    "genre": "Novel",
-    "dateReleased": "1847-12-01",
-    "rating": 4.2,
-    "description": "A passionate and tragic tale of love and revenge on the Yorkshire moors.",
-    "price": 8.49,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439556-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51AlBLuO7eS._SL500_.jpg"
   },
   {
     "title": "Don Quixote",
@@ -477,7 +458,7 @@
     "rating": 4.3,
     "description": "A satirical tale of a man who believes himself to be a knight.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780142437230-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/517CcnTH14L._SL500_.jpg"
   },
   {
     "title": "Madame Bovary",
@@ -491,7 +472,7 @@
     "rating": 4.1,
     "description": "A novel about a woman trapped in a stifling marriage who seeks escape through affairs.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780140449129-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41baRy0YMvL._SL500_.jpg"
   },
   {
     "title": "Middlemarch",
@@ -505,21 +486,7 @@
     "rating": 4.3,
     "description": "A novel about the politics, love, and ambitions in a fictional English town.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439549-M.jpg"
-  },
-  {
-    "title": "Anna Karenina",
-    "author": "Leo Tolstoy",
-    "categories": [
-      "Classic",
-      "Romance"
-    ],
-    "genre": "Novel",
-    "dateReleased": "1877-01-01",
-    "rating": 4.5,
-    "description": "A tragic romance about an affair between a married woman and a dashing count.",
-    "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780143035008-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51Z1tMPF8HL._SL500_.jpg"
   },
   {
     "title": "Great Expectations",
@@ -533,7 +500,7 @@
     "rating": 4.4,
     "description": "A coming-of-age story about a young boy’s rise from poverty to wealth.",
     "price": 8.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439563-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41a0MqrLMeL._SL500_.jpg"
   },
   {
     "title": "Frankenstein",
@@ -547,13 +514,13 @@
     "rating": 4.2,
     "description": "A gothic novel about a scientist who creates a monstrous life form.",
     "price": 6.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439471-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41CC3AXG7nL._SL500_.jpg"
   },
   {
     "title": "Dracula",
     "author": "Bram Stoker",
     "categories": [
-      "Gothic Fiction",
+      "Fiction",
       "Horror"
     ],
     "genre": "Novel",
@@ -561,7 +528,7 @@
     "rating": 4.3,
     "description": "A horror novel about the infamous vampire Count Dracula.",
     "price": 7.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780141439846-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41Dv6UvxAKL._SL500_.jpg"
   },
   {
     "title": "To the Lighthouse",
@@ -575,7 +542,7 @@
     "rating": 4.2,
     "description": "A modernist novel about time, memory, and family dynamics.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780156907392-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41+juzQyi-L._SL500_.jpg"
   },
   {
     "title": "Atonement",
@@ -589,7 +556,7 @@
     "rating": 4.3,
     "description": "A story of love, war, and the power of guilt and redemption.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780385721790-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41tbdIujMwL._SL500_.jpg"
   },
   {
     "title": "The Night Circus",
@@ -603,21 +570,7 @@
     "rating": 4.1,
     "description": "A magical competition between two young illusionists unfolds within a mysterious circus.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780307744432-M.jpg"
-  },
-  {
-    "title": "The Road",
-    "author": "Cormac McCarthy",
-    "categories": [
-      "Dystopian",
-      "Post-apocalyptic"
-    ],
-    "genre": "Novel",
-    "dateReleased": "2006-09-26",
-    "rating": 4.1,
-    "description": "A bleak tale of a father and son navigating through a post-apocalyptic world.",
-    "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780307387899-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41b5ldLmaAL._SL500_.jpg"
   },
   {
     "title": "The Underground Railroad",
@@ -631,7 +584,7 @@
     "rating": 4.4,
     "description": "A surreal and gripping reimagining of the Underground Railroad as an actual railroad.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780385542364-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51L1bxet+6L._SL500_.jpg"
   },
   {
     "title": "Where the Crawdads Sing",
@@ -645,21 +598,21 @@
     "rating": 4.5,
     "description": "A mystery surrounding the 'Marsh Girl' and a murder investigation in a coastal town.",
     "price": 15.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780735219106-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51Wm38fKj+L._SL500_.jpg"
   },
   {
     "title": "The Book Thief",
     "author": "Markus Zusak",
     "categories": [
       "Historical Fiction",
-      "World War II"
+      "War"
     ],
     "genre": "Novel",
     "dateReleased": "2005-03-14",
     "rating": 4.6,
     "description": "A young girl’s love of books helps her endure the horrors of Nazi Germany.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780375842206-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41RKGjq-XGL._SL500_.jpg"
   },
   {
     "title": "Little Fires Everywhere",
@@ -673,21 +626,21 @@
     "rating": 4.2,
     "description": "A suburban community is torn apart by tensions between two families.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780735224315-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51Jt8rPqhaL._SL500_.jpg"
   },
   {
     "title": "All the Light We Cannot See",
     "author": "Anthony Doerr",
     "categories": [
       "Historical Fiction",
-      "World War II"
+      "War"
     ],
     "genre": "Novel",
     "dateReleased": "2014-05-06",
     "rating": 4.5,
     "description": "The lives of a blind French girl and a German boy intertwine during World War II.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781501173219-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51uOK5inzuL._SL500_.jpg"
   },
   {
     "title": "The Handmaid's Tale",
@@ -701,35 +654,33 @@
     "rating": 4.4,
     "description": "A dystopian novel set in a theocratic society where women are subjugated.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780385490818-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41nu7vTP1gL._SL500_.jpg"
   },
   {
     "title": "Educated",
     "author": "Tara Westover",
     "categories": [
-      "Memoir",
-      "Non-fiction"
+      "Memoir"
     ],
     "genre": "Memoir",
     "dateReleased": "2018-02-20",
     "rating": 4.7,
     "description": "A memoir about a woman who grows up in a strict, survivalist family and seeks education.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780399590504-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/418dkB1gnxL._SL500_.jpg"
   },
   {
     "title": "Becoming",
     "author": "Michelle Obama",
     "categories": [
-      "Memoir",
-      "Non-fiction"
+      "Memoir"
     ],
     "genre": "Memoir",
     "dateReleased": "2018-11-13",
     "rating": 4.8,
     "description": "The memoir of former First Lady Michelle Obama.",
     "price": 17.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781524763138-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41Aoktw-fEL._SL500_.jpg"
   },
   {
     "title": "Circe",
@@ -743,13 +694,13 @@
     "rating": 4.5,
     "description": "A reimagining of the life of the mythological enchantress Circe.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780316556347-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51Mqas4UyXL._SL500_.jpg"
   },
   {
     "title": "The Goldfinch",
     "author": "Donna Tartt",
     "categories": [
-      "Literary Fiction",
+      "Fiction",
       "Thriller"
     ],
     "genre": "Novel",
@@ -757,13 +708,12 @@
     "rating": 4.2,
     "description": "A young boy's life changes after he survives an explosion at an art museum.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780316055437-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/417FX4orgXL._SL500_.jpg"
   },
   {
     "title": "Normal People",
     "author": "Sally Rooney",
     "categories": [
-      "Contemporary Fiction",
       "Romance"
     ],
     "genre": "Novel",
@@ -771,7 +721,7 @@
     "rating": 4.0,
     "description": "A novel exploring the complicated relationship between two young adults.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781984822178-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51PGZ36vDTL._SL500_.jpg"
   },
   {
     "title": "Americanah",
@@ -785,7 +735,7 @@
     "rating": 4.3,
     "description": "A story of love and race, exploring life in Nigeria and the U.S.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780307455925-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41b6InkMuZL._SL500_.jpg"
   },
   {
     "title": "Big Little Lies",
@@ -799,7 +749,7 @@
     "rating": 4.2,
     "description": "A darkly comedic novel about the dangerous little lies families tell each other.",
     "price": 9.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780399167065-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41LVsCyOT3L._SL500_.jpg"
   },
   {
     "title": "The Silent Patient",
@@ -813,21 +763,20 @@
     "rating": 4.1,
     "description": "A psychological thriller about a woman who stops speaking after allegedly committing a murder.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781250301697-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41j1-YNROeL._SL500_.jpg"
   },
   {
     "title": "The Vanishing Half",
     "author": "Brit Bennett",
     "categories": [
-      "Historical Fiction",
-      "Contemporary Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "2020-06-02",
     "rating": 4.4,
     "description": "A story of two twin sisters living different lives, one passing as white.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780525536291-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41oUp9qMNDL._SL500_.jpg"
   },
   {
     "title": "A Court of Silver Flames",
@@ -841,13 +790,13 @@
     "rating": 4.7,
     "description": "The next installment in the *A Court of Thorns and Roses* series.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781681196282-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51-q4DN7VxL._SL500_.jpg"
   },
   {
     "title": "The Four Winds",
     "author": "Kristin Hannah",
     "categories": [
-      "Historical Fiction",
+      "Fiction",
       "Family Saga"
     ],
     "genre": "Novel",
@@ -855,35 +804,33 @@
     "rating": 4.5,
     "description": "A powerful American epic set during the Great Depression, exploring resilience and survival.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781250178602-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51wBa+rmW4L._SL500_.jpg"
   },
   {
     "title": "Klara and the Sun",
     "author": "Kazuo Ishiguro",
     "categories": [
-      "Science Fiction",
-      "Philosophical Fiction"
+      "Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "2021-03-02",
     "rating": 4.2,
     "description": "A touching tale about an artificial being seeking to understand human emotion and life.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780593318171-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41N4rTPtCAL._SL500_.jpg"
   },
   {
     "title": "The Paris Library",
     "author": "Janet Skeslien Charles",
     "categories": [
-      "Historical Fiction",
-      "World War II"
+      "War"
     ],
     "genre": "Novel",
     "dateReleased": "2021-02-09",
     "rating": 4.1,
     "description": "A novel based on the true story of the American Library in Paris during WWII.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781982134198-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41-F4WQXVFL._SL500_.jpg"
   },
   {
     "title": "Malibu Rising",
@@ -897,7 +844,7 @@
     "rating": 4.3,
     "description": "Four famous siblings throw an epic party that changes their lives forever.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781524798659-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41T86pKtOjL._SL500_.jpg"
   },
   {
     "title": "The Last House on Needless Street",
@@ -911,7 +858,7 @@
     "rating": 4.0,
     "description": "A gothic horror novel with unexpected twists, exploring trauma and redemption.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781788166188-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/416f40HI0nL._SL500_.jpg"
   },
   {
     "title": "Sorrow and Bliss",
@@ -925,13 +872,13 @@
     "rating": 4.1,
     "description": "A darkly comedic story about mental illness, family, and rediscovering oneself.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780063049581-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/31wHOCHdT7L._SL500_.jpg"
   },
   {
     "title": "The Push",
     "author": "Ashley Audrain",
     "categories": [
-      "Psychological Fiction",
+      "Fiction",
       "Thriller"
     ],
     "genre": "Novel",
@@ -939,7 +886,7 @@
     "rating": 4.3,
     "description": "A psychological drama exploring motherhood, nature vs. nurture, and family trauma.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781984881663-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41MWBfspMmL._SL500_.jpg"
   },
   {
     "title": "The Maidens",
@@ -953,7 +900,7 @@
     "rating": 4.1,
     "description": "A dark psychological thriller set in the world of academia and Greek mythology.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781250304452-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41WehnULo7L._SL500_.jpg"
   },
   {
     "title": "The Sanatorium",
@@ -967,7 +914,7 @@
     "rating": 4.0,
     "description": "A chilling mystery set in an isolated luxury hotel in the Swiss Alps.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780593296677-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/51vpPAnuoaL._SL500_.jpg"
   },
   {
     "title": "A Man Called Ove",
@@ -981,27 +928,27 @@
     "rating": 4.6,
     "description": "A curmudgeonly old man’s life is transformed by the arrival of new neighbors.",
     "price": 10.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781476738024-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/411hVDS5mWL._SL500_.jpg"
   },
   {
     "title": "The Seven Husbands of Evelyn Hugo",
     "author": "Taylor Jenkins Reid",
     "categories": [
-      "Historical Fiction",
-      "Romance"
+      "Romance",
+      "Historical Fiction"
     ],
     "genre": "Novel",
     "dateReleased": "2017-06-13",
     "rating": 4.4,
     "description": "An aging Hollywood star recounts her glamorous and scandalous career to a young journalist.",
     "price": 11.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781501139239-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41CPnkPQ6dL._SL500_.jpg"
   },
   {
     "title": "Shuggie Bain",
     "author": "Douglas Stuart",
     "categories": [
-      "Historical Fiction",
+      "Fiction",
       "LGBTQ"
     ],
     "genre": "Novel",
@@ -1009,13 +956,13 @@
     "rating": 4.4,
     "description": "A powerful story about growing up in 1980s Glasgow and dealing with addiction.",
     "price": 14.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780802148049-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41YHcVL8abL._SL500_.jpg"
   },
   {
     "title": "Pachinko",
     "author": "Min Jin Lee",
     "categories": [
-      "Historical Fiction",
+      "Fiction",
       "Family Saga"
     ],
     "genre": "Novel",
@@ -1023,13 +970,13 @@
     "rating": 4.5,
     "description": "An epic multi-generational story of a Korean family in Japan, battling discrimination and poverty.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781455563920-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41nRbxFWKcL._SL500_.jpg"
   },
   {
     "title": "The Giver of Stars",
     "author": "Jojo Moyes",
     "categories": [
-      "Historical Fiction",
+      "Fiction",
       "Adventure"
     ],
     "genre": "Novel",
@@ -1037,13 +984,13 @@
     "rating": 4.3,
     "description": "A group of women defy societal norms to deliver books as part of a traveling library in 1930s Kentucky.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780399562488-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/418tRVX5+-L._SL500_.jpg"
   },
   {
     "title": "Homegoing",
     "author": "Yaa Gyasi",
     "categories": [
-      "Historical Fiction",
+      "Fiction",
       "Cultural"
     ],
     "genre": "Novel",
@@ -1051,13 +998,13 @@
     "rating": 4.6,
     "description": "A multi-generational novel tracing the legacy of slavery in Ghana and the U.S.",
     "price": 13.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9781101971062-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/41UY3xTBq3L._SL500_.jpg"
   },
   {
     "title": "The Henna Artist",
     "author": "Alka Joshi",
     "categories": [
-      "Historical Fiction",
+      "Fiction",
       "Cultural"
     ],
     "genre": "Novel",
@@ -1065,6 +1012,7 @@
     "rating": 4.4,
     "description": "A woman escapes an abusive marriage and reinvents herself as a sought-after henna artist in 1950s India.",
     "price": 12.99,
-    "image": "https://covers.openlibrary.org/b/isbn/9780778309451-M.jpg"
+    "image": "https://m.media-amazon.com/images/I/5164YRc7cHL._SL500_.jpg"
   }
 ]
+
