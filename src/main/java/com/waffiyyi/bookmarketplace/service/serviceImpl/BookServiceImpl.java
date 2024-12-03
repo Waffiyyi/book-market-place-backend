@@ -35,8 +35,6 @@ public class BookServiceImpl implements BookService {
 
    private static final String API_URL =
      "https://disappointed-donnie-bookmarketplacebackend-58ffda1b.koyeb.app/api/create-book";
-   private static final String jwt =
-     "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMyNDcyMDgsImV4cCI6MTczMzMzMzYwOCwiZW1haWwiOiJmYXNob2xhd2FmaXl5aUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IiJ9.Cmwf-6l9vql0f4DE3vzKMK-fypX-oejP-Rc2xqwLBinxB5BB7VQCTiHCz3haVeCEzDWAmhYsqEwHpICHQ28lpw";
 
 
    @Override
@@ -123,7 +121,7 @@ public class BookServiceImpl implements BookService {
    }
 
    @Override
-   public String loadBooks() throws IOException {
+   public String loadBooks(String jwt) throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
       List<Book> books = objectMapper.readValue(
         new File("/Users/macbookpro/Desktop/BookMarketPlace/src/main/resources/bookData.json"),
