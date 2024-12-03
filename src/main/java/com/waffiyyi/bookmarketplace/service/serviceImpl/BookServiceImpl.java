@@ -101,7 +101,6 @@ public class BookServiceImpl implements BookService {
       }
       return new ResponseEntity<>(new ArrayList<>(categories), HttpStatus.OK);
    }
-
    @Transactional
    public List<Book> getFrequentlyBoughtWith(Long userId) {
       Set<Transaction> userTransactions = transactionRepository.findAllByUserId(userId);
@@ -118,7 +117,7 @@ public class BookServiceImpl implements BookService {
         Collectors.toSet());
       //ideally we should use this if db contains more than one book by same
       // Author
-      //      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
+//      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
       //using this as db data is not much
       return bookRepository.findByAuthorIn(authors);
    }
@@ -128,19 +127,20 @@ public class BookServiceImpl implements BookService {
    public String loadBooks() throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
       List<Book> books = objectMapper.readValue(
-        new File(
-          "/Users/macbookpro/Desktop/BookMarketPlace/src/main/resources/bookData.json"),
-        new TypeReference<List<Book>>() {
-        });
+        new File("/Users/macbookpro/Desktop/BookMarketPlace/src/main/resources/bookData.json"),
+        new TypeReference<List<Book>>() {});
 
       HttpHeaders headers = new HttpHeaders();
       headers.setBearerAuth(jwt);
-      headers.setContentType(MediaType.APPLICATION_JSON);
 
       RestTemplate restTemplate = new RestTemplate();
-      HttpEntity<List<Book>> requestEntity = new HttpEntity<>(books, headers);
-      ResponseEntity<String> responseEntity = restTemplate.exchange(
-        API_URL, HttpMethod.POST, requestEntity, String.class);
+
+      for (Book book : books) {
+         log.info(book+"book");
+         HttpEntity<Book> requestEntity = new HttpEntity<>(book, headers);
+         ResponseEntity<Book> responseEntity = restTemplate.exchange(
+           API_URL, HttpMethod.POST, requestEntity, Book.class);
+      }
 
       return "Successfully loaded db with books";
    }
