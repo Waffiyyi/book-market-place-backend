@@ -35,6 +35,8 @@ public class BookServiceImpl implements BookService {
 
    private static final String API_URL =
      "https://disappointed-donnie-bookmarketplacebackend-58ffda1b.koyeb.app/api/create-book";
+   private static final String hardCodeJwt =
+     "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMyNTI4NzIsImV4cCI6MTczMzMzOTI3MiwiZW1haWwiOiJmYXNob2xhd2FmaXl5aUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IiJ9.77ts7wJatn1Aw_qH8DFZra_Dwj3f8IpH33xWstsaWw7AdvcJcXOUPZBwiQ1YCQ8X2N5ielta6CDIg8BrR0qAnw";
 
 
    @Override
@@ -128,7 +130,7 @@ public class BookServiceImpl implements BookService {
         new TypeReference<List<Book>>() {});
 
       HttpHeaders headers = new HttpHeaders();
-      headers.setBearerAuth(jwt);
+      headers.setBearerAuth(hardCodeJwt);
 
       RestTemplate restTemplate = new RestTemplate();
 
