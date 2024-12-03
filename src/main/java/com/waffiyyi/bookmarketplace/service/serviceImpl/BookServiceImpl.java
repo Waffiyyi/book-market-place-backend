@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,8 +41,8 @@ public class BookServiceImpl implements BookService {
 
 
    @Override
+   @Transactional
    public Book createBook(Book req) {
-
       Book createdBook = Book
         .builder()
         .author(req.getAuthor())
@@ -101,6 +102,7 @@ public class BookServiceImpl implements BookService {
       }
       return new ResponseEntity<>(new ArrayList<>(categories), HttpStatus.OK);
    }
+
    @Transactional
    public List<Book> getFrequentlyBoughtWith(Long userId) {
       Set<Transaction> userTransactions = transactionRepository.findAllByUserId(userId);
@@ -117,13 +119,12 @@ public class BookServiceImpl implements BookService {
         Collectors.toSet());
       //ideally we should use this if db contains more than one book by same
       // Author
-//      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
+      //      return bookRepository.findByAuthorInAndIdNotIn(authors, frequentlyBoughtBooks);
       //using this as db data is not much
       return bookRepository.findByAuthorIn(authors);
    }
 
    @Override
-   @Transactional
    public String loadBooks() throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
       List<Book> books = objectMapper.readValue(
@@ -136,14 +137,17 @@ public class BookServiceImpl implements BookService {
       RestTemplate restTemplate = new RestTemplate();
 
       for (Book book : books) {
-         log.info(book+"book");
-         HttpEntity<Book> requestEntity = new HttpEntity<>(book, headers);
-         ResponseEntity<Book> responseEntity = restTemplate.exchange(
-           API_URL, HttpMethod.POST, requestEntity, Book.class);
+         log.info(book + "book");
+         loadBookInNewTransaction(book, headers, restTemplate);
       }
 
       return "Successfully loaded db with books";
    }
 
-
+   @Transactional(propagation = Propagation.REQUIRES_NEW)
+   public void loadBookInNewTransaction(Book book, HttpHeaders headers,
+                                        RestTemplate restTemplate) {
+      HttpEntity<Book> requestEntity = new HttpEntity<>(book, headers);
+      restTemplate.exchange(API_URL, HttpMethod.POST, requestEntity, Book.class);
+   }
 }
