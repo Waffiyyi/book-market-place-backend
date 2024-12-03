@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
@@ -35,7 +36,7 @@ public class BookServiceImpl implements BookService {
    private static final String API_URL =
      "https://disappointed-donnie-bookmarketplacebackend-58ffda1b.koyeb.app/api/create-book";
    private static final String jwt =
-     "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzExNTAyMDMsImV4cCI6MTczMTIzNjYwMywiZW1haWwiOiJ3YWZpeXlpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiIn0.wd5YM7__1oGqB558Vrmqxy0cC-nS1ErcTrxVWl-DcQKA5SPemTGbFY49gWLFZlfHFAgZzSsNx3qjfcFmsidVhw";
+     "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMyNDM0NDIsImV4cCI6MTczMzMyOTg0MiwiZW1haWwiOiJmYXNob2xhd2FmaXl5aUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IiJ9.ThyqgWvkZuo5CWgopEiKQsMcLCxcHxZP1EDZ6PdWjN-TvFx-5ynTRiYvniDhXvJLVvOS7BDopV3pIjVXjz0RCA";
 
 
    @Override
@@ -85,11 +86,13 @@ public class BookServiceImpl implements BookService {
    }
 
    @Override
+   @Transactional
    public ResponseEntity<List<String>> getAllBookCategories() {
       return new ResponseEntity<>(bookCategoriesAndGenre, HttpStatus.OK);
    }
 
    @Override
+   @Transactional
    public ResponseEntity<List<String>> getFeaturedCategories() {
       List<String> categories = bookRepository.findTopCategoriesByBooksAndRating();
       if (categories == null) {
@@ -98,7 +101,7 @@ public class BookServiceImpl implements BookService {
       }
       return new ResponseEntity<>(new ArrayList<>(categories), HttpStatus.OK);
    }
-
+   @Transactional
    public List<Book> getFrequentlyBoughtWith(Long userId) {
       Set<Transaction> userTransactions = transactionRepository.findAllByUserId(userId);
 
