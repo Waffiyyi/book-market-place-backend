@@ -40,7 +40,6 @@ public class BookServiceImpl implements BookService {
 
 
    @Override
-   @Transactional
    public Book createBook(Book req) {
 
       Book createdBook = Book
@@ -124,7 +123,6 @@ public class BookServiceImpl implements BookService {
    }
 
    @Override
-   @Transactional
    public String loadBooks() throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
       List<Book> books = objectMapper.readValue(
